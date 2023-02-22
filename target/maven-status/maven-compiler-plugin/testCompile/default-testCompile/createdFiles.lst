@@ -1,13 +1,2 @@
-data/LoginUserResponse.class
-data/CreateOrderRequest.class
-helpers/OrdersHelper.class
 tests/OrderTest.class
-data/CreateUserResponse.class
-data/CreateOrderResponse.class
-data/CreateOrderResponseNumberElem.class
-data/LoginUserRequest.class
 tests/UserTest.class
-data/UserRequest.class
-data/CreateUserRequest.class
-helpers/UserHelper.class
-data/LoginUserResponseUser.class

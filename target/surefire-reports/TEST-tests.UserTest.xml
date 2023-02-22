@@ -1,73 +1,71 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="9" failures="0" name="tests.UserTest" time="4.442" errors="0" skipped="0">
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="tests.UserTest" time="4.799" tests="9" errors="0" skipped="0" failures="0">
   <properties>
-    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
-    <property name="java.vm.version" value="11.0.18+10-LTS"/>
-    <property name="sun.boot.library.path" value="/usr/lib/jvm/java-11-amazon-corretto/lib"/>
-    <property name="maven.multiModuleProjectDirectory" value="/home/user1/Github/Diplom_2"/>
-    <property name="java.vm.vendor" value="Amazon.com Inc."/>
-    <property name="java.vendor.url" value="https://aws.amazon.com/corretto/"/>
-    <property name="guice.disable.misplaced.annotation.check" value="true"/>
-    <property name="path.separator" value=":"/>
-    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
-    <property name="sun.os.patch.level" value="unknown"/>
-    <property name="user.country" value="RU"/>
-    <property name="sun.java.launcher" value="SUN_STANDARD"/>
-    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="/home/user1/Github/Diplom_2"/>
-    <property name="java.vm.compressedOopsMode" value="Zero based"/>
-    <property name="java.runtime.version" value="11.0.18+10-LTS"/>
-    <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
-    <property name="os.arch" value="amd64"/>
-    <property name="java.io.tmpdir" value="/tmp"/>
-    <property name="line.separator" value="
-"/>
-    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="os.name" value="Linux"/>
-    <property name="classworlds.conf" value="/usr/share/maven/bin/m2.conf"/>
-    <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="java.library.path" value="/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib"/>
-    <property name="maven.conf" value="/usr/share/maven/conf"/>
-    <property name="jdk.debug" value="release"/>
-    <property name="java.class.version" value="55.0"/>
-    <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="os.version" value="5.19.0-32-generic"/>
-    <property name="library.jansi.path" value="/usr/share/maven/lib/jansi-native"/>
-    <property name="user.home" value="/home/user1"/>
-    <property name="user.timezone" value="Europe/Samara"/>
-    <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"/>
-    <property name="file.encoding" value="UTF-8"/>
+    <property name="sun.desktop" value="gnome"/>
+    <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
     <property name="java.specification.version" value="11"/>
-    <property name="user.name" value="user1"/>
-    <property name="java.class.path" value="/usr/share/maven/boot/plexus-classworlds-2.x.jar"/>
-    <property name="java.vm.specification.version" value="11"/>
+    <property name="sun.cpu.isalist" value=""/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/home/user1/Github/Diplom_2/target/test-classes:/home/user1/Github/Diplom_2/target/classes:/home/user1/.m2/repository/io/qameta/allure/allure-junit4/2.15.0/allure-junit4-2.15.0.jar:/home/user1/.m2/repository/io/qameta/allure/allure-java-commons/2.15.0/allure-java-commons-2.15.0.jar:/home/user1/.m2/repository/org/slf4j/slf4j-api/1.7.30/slf4j-api-1.7.30.jar:/home/user1/.m2/repository/io/qameta/allure/allure-model/2.15.0/allure-model-2.15.0.jar:/home/user1/.m2/repository/io/qameta/allure/allure-rest-assured/2.15.0/allure-rest-assured-2.15.0.jar:/home/user1/.m2/repository/io/qameta/allure/allure-attachments/2.15.0/allure-attachments-2.15.0.jar:/home/user1/.m2/repository/org/freemarker/freemarker/2.3.31/freemarker-2.3.31.jar:/home/user1/.m2/repository/io/rest-assured/rest-assured/4.5.0/rest-assured-4.5.0.jar:/home/user1/.m2/repository/org/codehaus/groovy/groovy/3.0.9/groovy-3.0.9.jar:/home/user1/.m2/repository/org/codehaus/groovy/groovy-xml/3.0.9/groovy-xml-3.0.9.jar:/home/user1/.m2/repository/org/apache/httpcomponents/httpclient/4.5.13/httpclient-4.5.13.jar:/home/user1/.m2/repository/org/apache/httpcomponents/httpcore/4.4.13/httpcore-4.4.13.jar:/home/user1/.m2/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar:/home/user1/.m2/repository/commons-codec/commons-codec/1.11/commons-codec-1.11.jar:/home/user1/.m2/repository/org/apache/httpcomponents/httpmime/4.5.13/httpmime-4.5.13.jar:/home/user1/.m2/repository/org/hamcrest/hamcrest/2.1/hamcrest-2.1.jar:/home/user1/.m2/repository/org/ccil/cowan/tagsoup/tagsoup/1.2.1/tagsoup-1.2.1.jar:/home/user1/.m2/repository/io/rest-assured/json-path/4.5.0/json-path-4.5.0.jar:/home/user1/.m2/repository/org/codehaus/groovy/groovy-json/3.0.9/groovy-json-3.0.9.jar:/home/user1/.m2/repository/io/rest-assured/rest-assured-common/4.5.0/rest-assured-common-4.5.0.jar:/home/user1/.m2/repository/io/rest-assured/xml-path/4.5.0/xml-path-4.5.0.jar:/home/user1/.m2/repository/org/apache/commons/commons-lang3/3.11/commons-lang3-3.11.jar:/home/user1/.m2/repository/com/google/code/gson/gson/2.8.9/gson-2.8.9.jar:/home/user1/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.13.4.1/jackson-databind-2.13.4.1.jar:/home/user1/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.13.4/jackson-annotations-2.13.4.jar:/home/user1/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.13.4/jackson-core-2.13.4.jar:/home/user1/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar:/home/user1/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
+    <property name="java.vm.vendor" value="Amazon.com Inc."/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean test"/>
-    <property name="java.home" value="/usr/lib/jvm/java-11-amazon-corretto"/>
+    <property name="java.vendor.url" value="https://aws.amazon.com/corretto/"/>
+    <property name="user.timezone" value=""/>
+    <property name="java.vm.specification.version" value="11"/>
+    <property name="os.name" value="Linux"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="RU"/>
+    <property name="sun.boot.library.path" value="/usr/lib/jvm/java-11-amazon-corretto/lib"/>
+    <property name="sun.java.command" value="/home/user1/Github/Diplom_2/target/surefire/surefirebooter8036907936729956464.jar /home/user1/Github/Diplom_2/target/surefire 2023-02-22T04-55-45_500-jvmRun1 surefire3789840299479593288tmp surefire_017718064046216588857tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="/home/user1/Github/Diplom_2/target/test-classes:/home/user1/Github/Diplom_2/target/classes:/home/user1/.m2/repository/io/qameta/allure/allure-junit4/2.15.0/allure-junit4-2.15.0.jar:/home/user1/.m2/repository/io/qameta/allure/allure-java-commons/2.15.0/allure-java-commons-2.15.0.jar:/home/user1/.m2/repository/org/slf4j/slf4j-api/1.7.30/slf4j-api-1.7.30.jar:/home/user1/.m2/repository/io/qameta/allure/allure-model/2.15.0/allure-model-2.15.0.jar:/home/user1/.m2/repository/io/qameta/allure/allure-rest-assured/2.15.0/allure-rest-assured-2.15.0.jar:/home/user1/.m2/repository/io/qameta/allure/allure-attachments/2.15.0/allure-attachments-2.15.0.jar:/home/user1/.m2/repository/org/freemarker/freemarker/2.3.31/freemarker-2.3.31.jar:/home/user1/.m2/repository/io/rest-assured/rest-assured/4.5.0/rest-assured-4.5.0.jar:/home/user1/.m2/repository/org/codehaus/groovy/groovy/3.0.9/groovy-3.0.9.jar:/home/user1/.m2/repository/org/codehaus/groovy/groovy-xml/3.0.9/groovy-xml-3.0.9.jar:/home/user1/.m2/repository/org/apache/httpcomponents/httpclient/4.5.13/httpclient-4.5.13.jar:/home/user1/.m2/repository/org/apache/httpcomponents/httpcore/4.4.13/httpcore-4.4.13.jar:/home/user1/.m2/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar:/home/user1/.m2/repository/commons-codec/commons-codec/1.11/commons-codec-1.11.jar:/home/user1/.m2/repository/org/apache/httpcomponents/httpmime/4.5.13/httpmime-4.5.13.jar:/home/user1/.m2/repository/org/hamcrest/hamcrest/2.1/hamcrest-2.1.jar:/home/user1/.m2/repository/org/ccil/cowan/tagsoup/tagsoup/1.2.1/tagsoup-1.2.1.jar:/home/user1/.m2/repository/io/rest-assured/json-path/4.5.0/json-path-4.5.0.jar:/home/user1/.m2/repository/org/codehaus/groovy/groovy-json/3.0.9/groovy-json-3.0.9.jar:/home/user1/.m2/repository/io/rest-assured/rest-assured-common/4.5.0/rest-assured-common-4.5.0.jar:/home/user1/.m2/repository/io/rest-assured/xml-path/4.5.0/xml-path-4.5.0.jar:/home/user1/.m2/repository/org/apache/commons/commons-lang3/3.11/commons-lang3-3.11.jar:/home/user1/.m2/repository/com/google/code/gson/gson/2.8.9/gson-2.8.9.jar:/home/user1/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.13.4.1/jackson-databind-2.13.4.1.jar:/home/user1/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.13.4/jackson-annotations-2.13.4.jar:/home/user1/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.13.4/jackson-core-2.13.4.jar:/home/user1/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar:/home/user1/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
+    <property name="allure.results.directory" value="/home/user1/Github/Diplom_2/target/allure-results"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/home/user1"/>
     <property name="user.language" value="ru"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
-    <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
-    <property name="java.vm.info" value="mixed mode"/>
-    <property name="java.version" value="11.0.18"/>
-    <property name="java.vendor" value="Amazon.com Inc."/>
-    <property name="maven.home" value="/usr/share/maven"/>
-    <property name="file.separator" value="/"/>
     <property name="java.version.date" value="2023-01-17"/>
-    <property name="java.vendor.url.bug" value="https://github.com/corretto/corretto-11/issues/"/>
-    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
-    <property name="sun.cpu.endian" value="little"/>
+    <property name="java.home" value="/usr/lib/jvm/java-11-amazon-corretto"/>
+    <property name="file.separator" value="/"/>
+    <property name="basedir" value="/home/user1/Github/Diplom_2"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
+    <property name="surefire.real.class.path" value="/home/user1/Github/Diplom_2/target/surefire/surefirebooter8036907936729956464.jar"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="11.0.18+10-LTS"/>
+    <property name="user.name" value="user1"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="5.19.0-32-generic"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
     <property name="java.vendor.version" value="Corretto-11.0.18.10.1"/>
-    <property name="sun.desktop" value="gnome"/>
-    <property name="sun.cpu.isalist" value=""/>
+    <property name="localRepository" value="/home/user1/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/corretto/corretto-11/issues/"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="java.version" value="11.0.18"/>
+    <property name="user.dir" value="/home/user1/Github/Diplom_2"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="java.library.path" value="/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.vendor" value="Amazon.com Inc."/>
+    <property name="java.vm.version" value="11.0.18+10-LTS"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="55.0"/>
   </properties>
-  <testcase classname="tests.UserTest" name="failWithTryToEditUserWithoutLogin" time="0.218"/>
-  <testcase classname="tests.UserTest" name="loginUserCorrect" time="0.255"/>
-  <testcase classname="tests.UserTest" name="failCreateUserWithoutName" time="0.187"/>
-  <testcase classname="tests.UserTest" name="failCreateUserWithoutEmail" time="0.203"/>
-  <testcase classname="tests.UserTest" name="failCreatingTwoSimilarUsersTest" time="1.112"/>
-  <testcase classname="tests.UserTest" name="loginUnregisteredUserFail" time="0.207"/>
-  <testcase classname="tests.UserTest" name="correctEditUserWithLogin" time="1.261"/>
-  <testcase classname="tests.UserTest" name="failCreateUserWithoutPassword" time="0.172"/>
-  <testcase classname="tests.UserTest" name="createUserCorrect" time="0.827"/>
+  <testcase name="failWithTryToEditUserWithoutLogin" classname="tests.UserTest" time="0.21"/>
+  <testcase name="loginUserCorrect" classname="tests.UserTest" time="0.303"/>
+  <testcase name="failCreateUserWithoutName" classname="tests.UserTest" time="0.213"/>
+  <testcase name="failCreateUserWithoutEmail" classname="tests.UserTest" time="0.233"/>
+  <testcase name="failCreatingTwoSimilarUsersTest" classname="tests.UserTest" time="1.193"/>
+  <testcase name="loginUnregisteredUserFail" classname="tests.UserTest" time="0.218"/>
+  <testcase name="correctEditUserWithLogin" classname="tests.UserTest" time="1.287"/>
+  <testcase name="failCreateUserWithoutPassword" classname="tests.UserTest" time="0.225"/>
+  <testcase name="createUserCorrect" classname="tests.UserTest" time="0.899"/>
 </testsuite>

@@ -3,6 +3,7 @@ package tests;
 import data.LoginUserResponse;
 import helpers.OrdersHelper;
 import helpers.UserHelper;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,6 +22,7 @@ public class OrderTest {
     }
 
     @Test
+    @DisplayName("Успешное создание заказа без авторизации")
     public void successCreateOrderWithoutLogin(){
         ArrayList<String> data = new ArrayList<String>();
         data.add("61c0c5a71d1f82001bdaaa6d");
@@ -34,6 +36,7 @@ public class OrderTest {
     }
 
     @Test
+    @DisplayName("Успешное создание заказа с авторизацией")
     public void successCreateOrderWithLogin(){
 
         ArrayList<String> data = new ArrayList<String>();
@@ -53,6 +56,7 @@ public class OrderTest {
     }
 
     @Test
+    @DisplayName("Попытка создания заказа без ингридиентов")
     public void createOrderWithoutIngridients(){
         ArrayList<String> data = new ArrayList<String>();
         OrdersHelper order = new OrdersHelper(data);
@@ -63,6 +67,7 @@ public class OrderTest {
     }
 
     @Test
+    @DisplayName("Попытка создания заказа с некорректными ингридиентами")
     public void createOrderWithIncorrectIngredients(){
 
         ArrayList<String> data = new ArrayList<String>();
@@ -78,6 +83,7 @@ public class OrderTest {
     }
 
     @Test
+    @DisplayName("Получение заказов для пользователя")
     public void getOrdersForUser(){
 
         ArrayList<String> data = new ArrayList<String>();
@@ -98,6 +104,7 @@ public class OrderTest {
     }
 
     @Test
+    @DisplayName("Получение заказов при отсутствии логина")
     public void getOrdersWithoutLogin(){
 
         ArrayList<String> data = new ArrayList<String>();
