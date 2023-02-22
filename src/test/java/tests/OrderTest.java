@@ -1,6 +1,6 @@
 package tests;
 
-import data.LoginUserResponse;
+import data.*;
 import helpers.OrdersHelper;
 import helpers.UserHelper;
 import io.qameta.allure.junit4.DisplayName;
@@ -11,19 +11,20 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class OrderTest {
 
     // TO-DO: read docs about unlogin
 
     @Before
-    public void setUp(){
+    public void setUp() {
         RestAssured.baseURI = "https://stellarburgers.nomoreparties.site";
     }
 
     @Test
     @DisplayName("Успешное создание заказа без авторизации")
-    public void successCreateOrderWithoutLogin(){
+    public void successCreateOrderWithoutLogin() {
         ArrayList<String> data = new ArrayList<String>();
         data.add("61c0c5a71d1f82001bdaaa6d");
         data.add("61c0c5a71d1f82001bdaaa6f");
@@ -32,12 +33,17 @@ public class OrderTest {
         order.makeCreateOrderRequestWithoutLogin();
         int code = order.getOrderRequestStatusCode();
 
+        try {
+            CreateOrderResponseSuccess respData = order.getOrder().as(CreateOrderResponseSuccess.class);
+        } catch (Exception exception) {
+            fail("Пришедший ответ не соответствует документации API");
+        }
         assertEquals(200, code);
     }
 
     @Test
     @DisplayName("Успешное создание заказа с авторизацией")
-    public void successCreateOrderWithLogin(){
+    public void successCreateOrderWithLogin() {
 
         ArrayList<String> data = new ArrayList<String>();
         data.add("61c0c5a71d1f82001bdaaa6d");
@@ -52,23 +58,33 @@ public class OrderTest {
         order.makeCreateOrderRequestWithLogin(resp.getAccessToken());
         int code = order.getOrderRequestStatusCode();
 
+        try {
+            CreateOrderResponseSuccess respData = order.getOrder().as(CreateOrderResponseSuccess.class);
+        } catch (Exception exception) {
+            fail("Пришедший ответ не соответствует документации API");
+        }
         assertEquals(200, code);
     }
 
     @Test
     @DisplayName("Попытка создания заказа без ингридиентов")
-    public void createOrderWithoutIngridients(){
+    public void createOrderWithoutIngridients() {
         ArrayList<String> data = new ArrayList<String>();
         OrdersHelper order = new OrdersHelper(data);
         order.makeCreateOrderRequestWithoutLogin();
         int code = order.getOrderRequestStatusCode();
 
+        try {
+            CreateOrderResponse respData = order.getOrder().as(CreateOrderResponse.class);
+        } catch (Exception exception) {
+            fail("Пришедший ответ не соответствует документации API");
+        }
         assertEquals(400, code);
     }
 
     @Test
     @DisplayName("Попытка создания заказа с некорректными ингридиентами")
-    public void createOrderWithIncorrectIngredients(){
+    public void createOrderWithIncorrectIngredients() {
 
         ArrayList<String> data = new ArrayList<String>();
         data.add("00061c0c5a71d1f82001bdaaa6d");
@@ -79,12 +95,11 @@ public class OrderTest {
         int code = order.getOrderRequestStatusCode();
 
         assertEquals(500, code);
-
     }
 
     @Test
     @DisplayName("Получение заказов для пользователя")
-    public void getOrdersForUser(){
+    public void getOrdersForUser() {
 
         ArrayList<String> data = new ArrayList<String>();
         OrdersHelper order = new OrdersHelper(data);
@@ -99,13 +114,18 @@ public class OrderTest {
 
         int code = order.getGetOrdersStatusCode();
 
+        try {
+            GetOrdersResponseSuccess respData = order.getOrders().as(GetOrdersResponseSuccess.class);
+        } catch (Exception exception) {
+            fail("Пришедший ответ не соответствует документации API");
+        }
         assertEquals(200, code);
 
     }
 
     @Test
     @DisplayName("Получение заказов при отсутствии логина")
-    public void getOrdersWithoutLogin(){
+    public void getOrdersWithoutLogin() {
 
         ArrayList<String> data = new ArrayList<String>();
         OrdersHelper order = new OrdersHelper(data);
@@ -114,6 +134,11 @@ public class OrderTest {
 
         int code = order.getGetOrdersStatusCode();
 
+        try {
+            GetOrdersResponse respData = order.getOrders().as(GetOrdersResponse.class);
+        } catch (Exception exception) {
+            fail("Пришедший ответ не соответствует документации API");
+        }
         assertEquals(401, code);
 
     }

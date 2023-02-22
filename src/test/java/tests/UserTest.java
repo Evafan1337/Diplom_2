@@ -1,5 +1,8 @@
 package tests;
 
+import data.CreateUserResponse;
+import data.CreateUserResponseSuccess;
+import data.LoginUserResponse;
 import helpers.UserHelper;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
@@ -10,6 +13,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class UserTest {
 
@@ -29,6 +33,12 @@ public class UserTest {
         createdUsers.add(user);
         user.makeLoginUserRequest();
 
+        try {
+            CreateUserResponseSuccess resData = user.getUser().as(CreateUserResponseSuccess.class);
+        } catch (Exception exception) {
+            fail("Пришедший ответ не соответствует документации API");
+        }
+
         assertEquals(200, user.getUserCreateStatusCode());
     }
 
@@ -39,11 +49,21 @@ public class UserTest {
         user.makeCreateUserRequest();
         createdUsers.add(user);
         user.makeLoginUserRequest();
-        assertEquals(200, user.getUserCreateStatusCode());
 
+        try {
+            CreateUserResponseSuccess resData = user.getUser().as(CreateUserResponseSuccess.class);
+        } catch (Exception exception) {
+            fail("Пришедший ответ не соответствует документации API");
+        }
+        assertEquals(200, user.getUserCreateStatusCode());
 
         UserHelper user2 = new UserHelper("cr-s-test-data-2@yandex.ru", "password", "cr-s-username-1");
         user2.makeCreateUserRequest();
+        try {
+            CreateUserResponse resData = user2.getUser().as(CreateUserResponse.class);
+        } catch (Exception exception) {
+            fail("Пришедший ответ не соответствует документации API");
+        }
         assertEquals(403, user2.getUserCreateStatusCode());
 
     }
@@ -53,6 +73,12 @@ public class UserTest {
     public void loginUserCorrect() {
         UserHelper user = new UserHelper("as007ershov@gmail.com", "as007ershov@gmail.com", "as007ershov@gmail.com");
         user.makeLoginUserRequest();
+
+        try {
+            LoginUserResponse resData = user.getLoginUser().as(LoginUserResponse.class);
+        } catch (Exception exception) {
+            fail("Пришедший ответ не соответствует документации API");
+        }
         assertEquals(user.getUserLoginStatusCode(), 200);
 
     }
@@ -62,6 +88,12 @@ public class UserTest {
     public void loginUnregisteredUserFail() {
         UserHelper user = new UserHelper("11nonregister11@yandex.ru", "password", "11nonregister11");
         user.makeLoginUserRequest();
+
+        try {
+            LoginUserResponse resData = user.getLoginUser().as(LoginUserResponse.class);
+        } catch (Exception exception) {
+            fail("Пришедший ответ не соответствует документации API");
+        }
         assertEquals(200, user.getUserLoginStatusCode());
     }
 
@@ -70,6 +102,12 @@ public class UserTest {
     public void failCreateUserWithoutEmail() {
         UserHelper user = new UserHelper("", "password", "username-1");
         user.makeCreateUserRequest();
+
+        try {
+            CreateUserResponseSuccess resData = user.getUser().as(CreateUserResponseSuccess.class);
+        } catch (Exception exception) {
+            fail("Пришедший ответ не соответствует документации API");
+        }
         assertEquals(403, user.getUserCreateStatusCode());
     }
 
@@ -78,6 +116,12 @@ public class UserTest {
     public void failCreateUserWithoutPassword() {
         UserHelper user = new UserHelper("p-test-data-2@yandex.ru", "", "p-username-1");
         user.makeCreateUserRequest();
+
+        try {
+            CreateUserResponseSuccess resData = user.getUser().as(CreateUserResponseSuccess.class);
+        } catch (Exception exception) {
+            fail("Пришедший ответ не соответствует документации API");
+        }
         assertEquals(403, user.getUserCreateStatusCode());
     }
 
@@ -87,6 +131,11 @@ public class UserTest {
         UserHelper user = new UserHelper("n-test-data-2@yandex.ru", "password", "");
         user.makeCreateUserRequest();
 
+        try {
+            CreateUserResponseSuccess resData = user.getUser().as(CreateUserResponseSuccess.class);
+        } catch (Exception exception) {
+            fail("Пришедший ответ не соответствует документации API");
+        }
         assertEquals(403, user.getUserCreateStatusCode());
     }
 
@@ -101,8 +150,13 @@ public class UserTest {
         user.makeLoginUserRequest();
 
         user.updateUser("4-test@yandex.ru", "e-test-login-4");
-
         editedUser = user;
+
+        try {
+            LoginUserResponse resData = user.getLoginUser().as(LoginUserResponse.class);
+        } catch (Exception exception) {
+            fail("Пришедший ответ не соответствует документации API");
+        }
         assertEquals(expected, user.getUserEditStatusCode());
 
     }
@@ -115,6 +169,11 @@ public class UserTest {
 
         UserHelper user = new UserHelper("4-test@yandex.ru", "password", "test-login-4");
         user.updateUserWithoutLogin("4-test@yandex.ru", "e-test-login-4");
+        try {
+            LoginUserResponse resData = user.getLoginUser().as(LoginUserResponse.class);
+        } catch (Exception exception) {
+            fail("Пришедший ответ не соответствует документации API");
+        }
         assertEquals(expected, user.getUserEditStatusCode());
 
     }

@@ -1,6 +1,6 @@
 package data;
 
-public class CreateOrderResponse {
+public class GetOrdersResponse {
     private boolean success;
     private String message;
 
