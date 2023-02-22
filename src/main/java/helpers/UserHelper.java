@@ -1,4 +1,5 @@
 package helpers;
+
 import data.CreateUserRequest;
 import data.LoginUserRequest;
 import data.LoginUserResponse;
@@ -16,9 +17,9 @@ public class UserHelper {
     private RestAssuredResponseImpl loginUser = null;
 
     private CreateUserRequest createUserData;
-    private LoginUserRequest  loginUserData;
+    private LoginUserRequest loginUserData;
 
-    public UserHelper(String email, String password, String name){
+    public UserHelper(String email, String password, String name) {
 
         createUserData = new CreateUserRequest(email, password, name);
         loginUserData = new LoginUserRequest(email, password);
@@ -26,7 +27,7 @@ public class UserHelper {
     }
 
     @Step("Запрос создания пользователя")
-    public void makeCreateUserRequest(){
+    public void makeCreateUserRequest() {
         user = (RestAssuredResponseImpl) given()
                 .header("Content-type", "application/json")
                 .and()
@@ -37,7 +38,7 @@ public class UserHelper {
     }
 
     @Step("Запрос авторизации")
-    public void makeLoginUserRequest(){
+    public void makeLoginUserRequest() {
         loginUser = (RestAssuredResponseImpl) given()
                 .header("Content-type", "application/json")
                 .and()
@@ -47,26 +48,26 @@ public class UserHelper {
                 .body();
     }
 
-    public RestAssuredResponseImpl getUser(){
+    public RestAssuredResponseImpl getUser() {
         return user;
     }
 
-    public RestAssuredResponseImpl getLoginUser(){
+    public RestAssuredResponseImpl getLoginUser() {
         return loginUser;
     }
 
     @Step("Получение кода ответа от запроса создания пользователя")
-    public int getUserCreateStatusCode(){
+    public int getUserCreateStatusCode() {
         return user.statusCode();
     }
 
     @Step("Получение кода ответа от запроса авторизации пользователя")
-    public int getUserLoginStatusCode(){
+    public int getUserLoginStatusCode() {
         return loginUser.statusCode();
     }
 
     @Step("Запрос удаления пользователя")
-    public void deleteUser(){
+    public void deleteUser() {
 
         //Need login and check for relogin
         //this.makeLoginUserRequest();
@@ -75,16 +76,16 @@ public class UserHelper {
         LoginUserResponse resp = this.getLoginUser().as(LoginUserResponse.class);
 
         given()
-            .header("Content-type", "application/json")
-            .header("Authorization",resp.getAccessToken())
-            .and()
-            .delete("/api/auth/user")
-            .then().statusCode(202);
+                .header("Content-type", "application/json")
+                .header("Authorization", resp.getAccessToken())
+                .and()
+                .delete("/api/auth/user")
+                .then().statusCode(202);
 
     }
 
     @Step("Запрос редактирования пользователя")
-    public void updateUser(String email, String name){
+    public void updateUser(String email, String name) {
 
 
         LoginUserResponse resp = this.getLoginUser().as(LoginUserResponse.class);
@@ -92,7 +93,7 @@ public class UserHelper {
 
         editUser = (RestAssuredResponseImpl) given()
                 .header("Content-type", "application/json")
-                .header("Authorization",resp.getAccessToken())
+                .header("Authorization", resp.getAccessToken())
                 .and()
                 .body(newUserData)
                 .when()
@@ -101,7 +102,7 @@ public class UserHelper {
     }
 
     @Step("Запрос редактирования пользователя без логина")
-    public void updateUserWithoutLogin(String email, String name){
+    public void updateUserWithoutLogin(String email, String name) {
 
         UserRequest newUserData = new UserRequest(email, name);
         editUser = (RestAssuredResponseImpl) given()
@@ -114,7 +115,7 @@ public class UserHelper {
     }
 
     @Step("Получение кода ответа от запроса редактирования пользователя")
-    public int getUserEditStatusCode(){
+    public int getUserEditStatusCode() {
         return editUser.statusCode();
     }
 }
