@@ -54,7 +54,7 @@ public class OrderTest {
         UserHelper user = new UserHelper("as007ershov@gmail.com", "as007ershov@gmail.com", "as007ershov@gmail.com");
         user.makeLoginUserRequest();
 
-        LoginUserResponse resp = user.getLoginUser().as(LoginUserResponse.class);
+        LoginUserResponseSuccess resp = user.getLoginUser().as(LoginUserResponseSuccess.class);
         order.makeCreateOrderRequestWithLogin(resp.getAccessToken());
         int code = order.getOrderRequestStatusCode();
 
@@ -106,7 +106,7 @@ public class OrderTest {
 
         UserHelper user = new UserHelper("as007ershov@gmail.com", "as007ershov@gmail.com", "as007ershov@gmail.com");
         user.makeLoginUserRequest();
-        LoginUserResponse resp = user.getLoginUser().as(LoginUserResponse.class);
+        LoginUserResponseSuccess resp = user.getLoginUser().as(LoginUserResponseSuccess.class);
         order.makeCreateOrderRequestWithLogin(resp.getAccessToken());
 
 

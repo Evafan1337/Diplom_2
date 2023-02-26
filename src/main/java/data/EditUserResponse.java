@@ -1,7 +1,6 @@
 package data;
 
-public class LoginUserResponse {
-
+public class EditUserResponse {
     private boolean success;
     private String message;
 

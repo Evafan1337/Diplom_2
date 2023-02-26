@@ -2,7 +2,7 @@ package helpers;
 
 import data.CreateUserRequest;
 import data.LoginUserRequest;
-import data.LoginUserResponse;
+import data.LoginUserResponseSuccess;
 import data.UserRequest;
 import io.qameta.allure.Step;
 import io.restassured.internal.RestAssuredResponseImpl;
@@ -56,6 +56,10 @@ public class UserHelper {
         return loginUser;
     }
 
+    public RestAssuredResponseImpl getEditUser(){
+        return editUser;
+    }
+
     @Step("Получение кода ответа от запроса создания пользователя")
     public int getUserCreateStatusCode() {
         return user.statusCode();
@@ -73,7 +77,7 @@ public class UserHelper {
         //this.makeLoginUserRequest();
 
         //LoginUserResponse resp = this.getUser().as(LoginUserResponse.class);
-        LoginUserResponse resp = this.getLoginUser().as(LoginUserResponse.class);
+        LoginUserResponseSuccess resp = this.getLoginUser().as(LoginUserResponseSuccess.class);
 
         given()
                 .header("Content-type", "application/json")
@@ -88,7 +92,7 @@ public class UserHelper {
     public void updateUser(String email, String name) {
 
 
-        LoginUserResponse resp = this.getLoginUser().as(LoginUserResponse.class);
+        LoginUserResponseSuccess resp = this.getLoginUser().as(LoginUserResponseSuccess.class);
         UserRequest newUserData = new UserRequest(email, name);
 
         editUser = (RestAssuredResponseImpl) given()
