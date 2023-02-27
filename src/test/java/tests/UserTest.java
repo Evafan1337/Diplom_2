@@ -48,7 +48,8 @@ public class UserTest {
 
         UserHelper user2 = new UserHelper("cr-s-test-data-3@yandex.ru", "password", "cr-s-username-3");
         user2.makeCreateUserRequest();
-        assertEquals(403, user2.getUserCreateStatusCode());
+        RestAssuredResponseImpl resp2 = user2.getUser();
+        resp2.then().assertThat().statusCode(403).extract().body().as(CreateUserResponse.class);
     }
 
     @Test
@@ -79,7 +80,7 @@ public class UserTest {
         user.makeCreateUserRequest();
 
         RestAssuredResponseImpl resp = user.getUser();
-        resp.then().assertThat().statusCode(403);
+        resp.then().assertThat().statusCode(403).extract().body().as(CreateUserResponse.class);;
     }
 
     @Test
@@ -89,7 +90,7 @@ public class UserTest {
         user.makeCreateUserRequest();
 
         RestAssuredResponseImpl resp = user.getUser();
-        resp.then().assertThat().statusCode(403);
+        resp.then().assertThat().statusCode(403).extract().body().as(CreateUserResponse.class);;
     }
 
     @Test
@@ -99,7 +100,7 @@ public class UserTest {
         user.makeCreateUserRequest();
 
         RestAssuredResponseImpl resp = user.getUser();
-        resp.then().assertThat().statusCode(403);
+        resp.then().assertThat().statusCode(403).extract().body().as(CreateUserResponse.class);;
     }
 
     @Test
@@ -127,7 +128,7 @@ public class UserTest {
         user.updateUserWithoutLogin("4-test@yandex.ru", "e-test-login-4");
 
         RestAssuredResponseImpl resp = user.getEditUser();
-        resp.then().assertThat().statusCode(expected);
+        resp.then().assertThat().statusCode(expected).extract().body().as(EditUserResponse.class);;
     }
 
     @After

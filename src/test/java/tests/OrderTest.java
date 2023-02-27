@@ -33,7 +33,6 @@ public class OrderTest {
         order.makeCreateOrderRequestWithoutLogin();
 
         RestAssuredResponseImpl resp = order.getOrder();
-        System.out.println(resp.body().asString());
         resp.then().assertThat().statusCode(200).extract().body().as(CreateOrderResponseSuccess.class);
     }
 
@@ -52,18 +51,9 @@ public class OrderTest {
 
         LoginUserResponseSuccess resp = user.getLoginUser().as(LoginUserResponseSuccess.class);
         order.makeCreateOrderRequestWithLogin(resp.getAccessToken());
-        int code = order.getOrderRequestStatusCode();
 
-        CreateOrderResponseSuccess respData = order.getOrder().as(CreateOrderResponseSuccess.class);
-        System.out.println(respData.getName());
-
-
-//        try {
-//        } catch (Exception exception) {
-//            fail("Пришедший ответ не соответствует документации API");
-//        }
-        assertEquals(200, code);
-
+        RestAssuredResponseImpl createOrderResponse = order.getOrder();
+        createOrderResponse.then().assertThat().statusCode(200).extract().body().as(CreateOrderResponseSuccess.class);
     }
 
     @Test
@@ -74,12 +64,8 @@ public class OrderTest {
         order.makeCreateOrderRequestWithoutLogin();
         int code = order.getOrderRequestStatusCode();
 
-        try {
-            CreateOrderResponse respData = order.getOrder().as(CreateOrderResponse.class);
-        } catch (Exception exception) {
-            fail("Пришедший ответ не соответствует документации API");
-        }
-        assertEquals(400, code);
+        RestAssuredResponseImpl resp = order.getOrder();
+        resp.then().assertThat().statusCode(400).extract().body().as(CreateOrderResponse.class);
     }
 
     @Test
@@ -107,19 +93,11 @@ public class OrderTest {
         UserHelper user = new UserHelper("as007ershov@gmail.com", "as007ershov@gmail.com", "as007ershov@gmail.com");
         user.makeLoginUserRequest();
         LoginUserResponseSuccess resp = user.getLoginUser().as(LoginUserResponseSuccess.class);
-        order.makeCreateOrderRequestWithLogin(resp.getAccessToken());
-
 
         order.getOrdersWithLogin(resp.getAccessToken());
 
-        int code = order.getGetOrdersStatusCode();
-
-        try {
-            GetOrdersResponseSuccess respData = order.getOrders().as(GetOrdersResponseSuccess.class);
-        } catch (Exception exception) {
-            fail("Пришедший ответ не соответствует документации API");
-        }
-        assertEquals(200, code);
+        RestAssuredResponseImpl getOrdersResponse = order.getOrders();
+        getOrdersResponse.then().assertThat().statusCode(200).extract().body().as(GetOrdersResponseSuccess.class);
 
     }
 
@@ -133,7 +111,6 @@ public class OrderTest {
         order.getOrdersWithoutLogin();
 
         int code = order.getGetOrdersStatusCode();
-
         try {
             GetOrdersResponse respData = order.getOrders().as(GetOrdersResponse.class);
         } catch (Exception exception) {
@@ -141,6 +118,8 @@ public class OrderTest {
         }
         assertEquals(401, code);
 
+        RestAssuredResponseImpl getOrdersResponse = order.getOrders();
+        getOrdersResponse.then().assertThat().statusCode(401).extract().body().as(GetOrdersResponse.class);
     }
 
 }

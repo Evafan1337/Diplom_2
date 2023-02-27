@@ -56,7 +56,7 @@ public class UserHelper {
         return loginUser;
     }
 
-    public RestAssuredResponseImpl getEditUser(){
+    public RestAssuredResponseImpl getEditUser() {
         return editUser;
     }
 
@@ -73,10 +73,6 @@ public class UserHelper {
     @Step("Запрос удаления пользователя")
     public void deleteUser() {
 
-        //Need login and check for relogin
-        //this.makeLoginUserRequest();
-
-        //LoginUserResponse resp = this.getUser().as(LoginUserResponse.class);
         LoginUserResponseSuccess resp = this.getLoginUser().as(LoginUserResponseSuccess.class);
 
         given()
