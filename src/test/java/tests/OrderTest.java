@@ -5,6 +5,7 @@ import helpers.OrdersHelper;
 import helpers.UserHelper;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
+import io.restassured.internal.RestAssuredResponseImpl;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,7 +16,6 @@ import static org.junit.Assert.fail;
 
 public class OrderTest {
 
-    // TO-DO: read docs about unlogin
 
     @Before
     public void setUp() {
@@ -31,14 +31,10 @@ public class OrderTest {
 
         OrdersHelper order = new OrdersHelper(data);
         order.makeCreateOrderRequestWithoutLogin();
-        int code = order.getOrderRequestStatusCode();
 
-        try {
-            CreateOrderResponseSuccess respData = order.getOrder().as(CreateOrderResponseSuccess.class);
-        } catch (Exception exception) {
-            fail("Пришедший ответ не соответствует документации API");
-        }
-        assertEquals(200, code);
+        RestAssuredResponseImpl resp = order.getOrder();
+        System.out.println(resp.body().asString());
+        resp.then().assertThat().statusCode(200).extract().body().as(CreateOrderResponseSuccess.class);
     }
 
     @Test
@@ -58,12 +54,16 @@ public class OrderTest {
         order.makeCreateOrderRequestWithLogin(resp.getAccessToken());
         int code = order.getOrderRequestStatusCode();
 
-        try {
-            CreateOrderResponseSuccess respData = order.getOrder().as(CreateOrderResponseSuccess.class);
-        } catch (Exception exception) {
-            fail("Пришедший ответ не соответствует документации API");
-        }
+        CreateOrderResponseSuccess respData = order.getOrder().as(CreateOrderResponseSuccess.class);
+        System.out.println(respData.getName());
+
+
+//        try {
+//        } catch (Exception exception) {
+//            fail("Пришедший ответ не соответствует документации API");
+//        }
         assertEquals(200, code);
+
     }
 
     @Test

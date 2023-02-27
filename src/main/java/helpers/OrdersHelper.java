@@ -33,6 +33,18 @@ public class OrdersHelper {
                 .body();
     }
 
+    @Step("Создание заказа с логином")
+    public void makeCreateOrderRequestWithLogin(String token){
+        order = (RestAssuredResponseImpl) given()
+                .header("Content-type", "application/json")
+                .header("Authorization",token)
+                .and()
+                .body(createOrderRequest)
+                .when()
+                .post("/api/orders")
+                .body();
+    }
+
     public void setLoginUser(RestAssuredResponseImpl loginUser){
         this.loginUser = loginUser;
     }
@@ -53,18 +65,6 @@ public class OrdersHelper {
     @Step("Получение кода ответа при получении заказов")
     public int getGetOrdersStatusCode(){
         return orders.statusCode();
-    }
-
-    @Step("Создание заказа без логина")
-    public void makeCreateOrderRequestWithLogin(String token){
-        order = (RestAssuredResponseImpl) given()
-                .header("Content-type", "application/json")
-                .header("Authorization",token)
-                .and()
-                .body(createOrderRequest)
-                .when()
-                .post("/api/orders")
-                .body();
     }
 
     @Step("Получение заказов с логином")
